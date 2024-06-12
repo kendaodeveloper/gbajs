@@ -66,8 +66,7 @@
 					}
 
 					if (
-						window.navigator.appName ===
-						'Microsoft Internet Explorer'
+						window.navigator.appName === 'Microsoft Internet Explorer'
 					) {
 						// Remove the pixelated option if it doesn't work
 						let pixelatedBox = document.getElementById('pixelated');
@@ -131,6 +130,10 @@
 
 						if (gba.audio.context && document.getElementById('check-sound').checked) {
 							if (gba.audio.context.state !== 'running') {gba.audio.context.resume();}
+						}
+
+						if (window.navigator.appName !== 'Microsoft Internet Explorer' && document.getElementById('check-pixelated').checked) {
+							setPixelated(true);
 						}
 					} else {
 						load.textContent = 'FAILED';
@@ -316,7 +319,6 @@
 		<canvas id="screen" width="480" height="320"></canvas>
 		<section id="gameinfo">
 			<!-- <p>The Game Boy Advance's buttons are mapped as follows:</p> -->
-			<p>Buttons:</p>
 			<table id="mapping">
 				<tr>
 					<td>Up</td>
@@ -376,7 +378,7 @@
 					onchange="run(this.files[0]);"
 				/>
 				<button onclick="document.getElementById('saveloader').click()">
-					Upload Savegame
+					Import<br/>Savegame
 				</button>
 				<input
 					id="saveloader"
@@ -391,14 +393,16 @@
 				<!-- <button class="bigbutton" onclick="reset()">RESET</button> -->
 				<button class="bigbutton" onclick="reset()">EXIT</button>
 				<button onclick="gba.downloadSavedata()">
-					Download Savegame
+					Download<br/>Savegame
 				</button>
 				<button onclick="screenshot()">Screenshot</button>
 				<button onclick="fullScreen()">Full screen</button>
 				<label id="pixelated">
 					<input
+						id="check-pixelated"
 						type="checkbox"
 						onchange="setPixelated(this.checked)"
+						checked
 					/>
 					<p>Pixelated</p>
 				</label>
