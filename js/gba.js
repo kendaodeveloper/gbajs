@@ -320,6 +320,11 @@ class GameBoyAdvance {
 			storage[this.SYS_ID + "." + this.mmu.cart.code] = this.encodeBase64(
 				sram.view
 			);
+
+			console.log("Game is saved!");
+
+			// use view of this.mmu.memory (array) or sram
+			// new Api().checkSaveDataChange(?);
 		} catch (e) {
 			this.WARN("Could not store savedata! " + e);
 		}
@@ -330,7 +335,10 @@ class GameBoyAdvance {
 			var data = storage[this.SYS_ID + "." + this.mmu.cart.code];
 			if (data) {
 				this.decodeSavedata(data);
+				console.log(`Save Game loaded with success`)
 				return true;
+			} else {
+				console.log(`Save Game does not exist`)
 			}
 		} catch (e) {
 			this.WARN("Could not retrieve savedata! " + e);

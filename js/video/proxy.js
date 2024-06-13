@@ -1,4 +1,4 @@
-class MemoryProxy {
+/* class MemoryProxy {
 	constructor(owner, size, blockSize) {
 		this.owner = owner;
 		this.blocks = [];
@@ -290,4 +290,4 @@ class GameBoyAdvanceRenderProxy {
 			}
 		}
 	}
-};
+}; */
